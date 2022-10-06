@@ -14,6 +14,7 @@ def createPopulation(bits, size):
     return arr
 
 #get a score for any given child
+#refactor for legit use
 def generateScore(child):
     score = 0
     for num in child:
@@ -94,4 +95,4 @@ def geneticAlgorithm(iterations, popSize, k, pMutation, pCross):
 
 
 #print(createPopulation(4, 10))
-geneticAlgorithm(1000, 10, 2, 0.9, 0.9)
+geneticAlgorithm(10, 10, 2, 0.1, 0.1)
