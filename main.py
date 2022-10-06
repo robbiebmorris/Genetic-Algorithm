@@ -1,5 +1,4 @@
 import random
-import numpy
 #https://machinelearningmastery.com/simple-genetic-algorithm-from-scratch-in-python/
 
 
@@ -16,7 +15,10 @@ def createPopulation(bits, size):
 
 #get a score for any given child
 def generateScore(child):
-    return 10
+    score = 0
+    for num in child:
+        score = score + num
+    return score
 
 #choose best parrent out of k possible parents
 def selection(population, scoreList, k):
@@ -55,7 +57,7 @@ def mutate(input, pMutation):
 #popSize
 #k: number of comparisons in selection function
 
-def geneticAlgorithm(iterations, popSize, k, pMutation):
+def geneticAlgorithm(iterations, popSize, k, pMutation, pCross):
     
     population = createPopulation(5, popSize)
     
@@ -81,7 +83,7 @@ def geneticAlgorithm(iterations, popSize, k, pMutation):
 
         children = []
         for i in range(0, popSize, 2):
-            tempChildList = breed(parents[i], parents[i + 1])
+            tempChildList = breed(parents[i], parents[i + 1], pCross)
             for child in tempChildList:
                 mutate(child, pMutation)
                 children.append(child)
@@ -92,4 +94,4 @@ def geneticAlgorithm(iterations, popSize, k, pMutation):
 
 
 #print(createPopulation(4, 10))
-geneticAlgorithm(1, 10, 2)
+geneticAlgorithm(1000, 10, 2, 0.9, 0.9)
